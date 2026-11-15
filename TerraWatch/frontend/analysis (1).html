@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050b14">
+  <meta name="description" content="TerraWatch SAR — an urban land subsidence monitoring interface for Addis Ababa.">
+  <title>Analysis | TerraWatch SAR | Urban Subsidence Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="analysis">
+  <div class="earth-backdrop" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="TerraWatch SAR home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.5 14.8 10 12 21.5 9.2 10 12 2.5Z" fill="currentColor"/>
+            <path d="M12 2.5 14.8 10H12V2.5Z" fill="#fff" opacity=".7"/>
+            <path d="M4 16.5c2.1-1.6 4.2-1.6 6.3 0s4.2 1.6 6.3 0 2.4-1.5 3.4-1.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span><span class="brand-name">TERRA<span>WATCH</span></span><span class="brand-sub">SAR MONITORING SYSTEM</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a class="nav-link " href="index.html" data-i18n="nav_overview">Overview</a>
+        <a class="nav-link " href="map.html" data-i18n="nav_map">Monitoring map</a>
+        <a class="nav-link active" href="analysis.html" data-i18n="nav_analysis">Analysis</a>
+        <a class="nav-link " href="methodology.html" data-i18n="nav_method">Methodology</a>
+        <a class="nav-link" href="about.html" data-i18n="nav_about">About us</a>
+        <a class="nav-link " href="assistant.html">AI Assistant</a>
+      </nav>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" type="button">🌐 አማርኛ</button>
+        <span class="demo-pill" data-i18n="demo_pill">DEMO DATA</span>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <div class="hazard-banner visible" id="hazardBanner" role="alert">
+      <div class="hazard-banner-left">
+        <span class="hazard-badge" data-i18n="hazard_badge">SUBSIDENCE CLUSTERS</span>
+        <span class="hazard-text" data-i18n="hazard_msg" id="clusterSummary">Loading backend cluster analysis…</span>
+      </div>
+      <a href="map.html" class="action-btn primary" style="white-space:nowrap">Inspect Zones →</a>
+    </div>
+    <section class="section" id="analysis">
+      <div class="section-heading">
+        <div><h2 data-i18n="sec3_title">Displacement &amp; risk analysis</h2><p data-i18n="sec3_sub">Backend cumulative observations, structure displacement, and risk classification</p></div>
+        <span class="eyebrow-small">03 / ANALYTICS</span>
+      </div>
+      <div class="analysis-grid">
+        <article class="panel">
+          <div class="panel-head">
+            <div><div class="panel-title" data-i18n="chart_title">Cumulative displacement time series</div><div class="panel-subtitle" data-i18n="chart_sub">BACKEND OBSERVATIONS · CENTIMETRES</div></div>
+            <select class="control" id="chartSite" aria-label="Choose a backend structure location">
+              <option value="">Loading backend locations…</option>
+            </select>
+          </div>
+          <div class="chart-box"><canvas id="displacementChart" aria-label="Backend cumulative displacement time series"></canvas></div>
+          <p id="chartStatus" role="status" style="padding:0 17px 14px;color:var(--subtle);font-size:10px">Waiting for backend observations…</p>
+        </article>
+        <article class="panel">
+          <div class="panel-head"><div><div class="panel-title" data-i18n="table_title">Highest-priority structures</div><div class="panel-subtitle" data-i18n="table_sub">BACKEND DISPLACEMENT &amp; RISK CLASSIFICATION</div></div></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th data-i18n="th_site">Structure</th><th data-i18n="th_val">Displacement (cm)</th><th data-i18n="th_vuln">Risk level</th></tr></thead>
+              <tbody id="siteTable"><tr><td colspan="3">Loading priority structures…</td></tr></tbody>
+            </table>
+          </div>
+          <div style="padding:13px 14px;color:var(--subtle);font-size:9px;line-height:1.6">Select a row to analyze its coordinates. Time-series values and risk labels are shown as returned by the backend; unavailable observations are not interpolated.</div>
+        </article>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-column">
+          <h3>Copyright</h3>
+          <p>© 2026 TerraWatch. All rights reserved.</p>
+          <p>Developed for NASA Space Apps Challenge 2026.</p>
+          <p class="footer-note">Values are backend outputs and depend on available radar and structure datasets. Model outputs are not a substitute for field verification.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html" data-i18n="nav_overview">Overview</a>
+            <a href="map.html" data-i18n="nav_map">Monitoring Map</a>
+            <a href="analysis.html" data-i18n="nav_analysis">Analysis</a>
+            <a href="methodology.html" data-i18n="nav_method">Methodology</a>
+            <a href="about.html" data-i18n="nav_about">About us</a>
+            <a href="assistant.html">AI Assistant</a>
+            <a href="https://www.spaceappschallenge.org/" target="_blank" rel="noopener noreferrer">NASA Space Apps</a>
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

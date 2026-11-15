@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050b14">
+  <meta name="description" content="TerraWatch SAR — an urban land subsidence monitoring interface for Addis Ababa.">
+  <title>Methodology | TerraWatch SAR | Urban Subsidence Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="method">
+  <div class="earth-backdrop" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="TerraWatch SAR home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.5 14.8 10 12 21.5 9.2 10 12 2.5Z" fill="currentColor"/>
+            <path d="M12 2.5 14.8 10H12V2.5Z" fill="#fff" opacity=".7"/>
+            <path d="M4 16.5c2.1-1.6 4.2-1.6 6.3 0s4.2 1.6 6.3 0 2.4-1.5 3.4-1.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span><span class="brand-name">TERRA<span>WATCH</span></span><span class="brand-sub">SAR MONITORING SYSTEM</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a class="nav-link " href="index.html" data-i18n="nav_overview">Overview</a>
+        <a class="nav-link " href="map.html" data-i18n="nav_map">Monitoring map</a>
+        <a class="nav-link " href="analysis.html" data-i18n="nav_analysis">Analysis</a>
+        <a class="nav-link active" href="methodology.html" data-i18n="nav_method">Methodology</a>
+        <a class="nav-link" href="about.html" data-i18n="nav_about">About us</a>
+        <a class="nav-link " href="assistant.html">AI Assistant</a>
+      </nav>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" type="button">🌐 አማርኛ</button>
+        <span class="demo-pill" data-i18n="demo_pill">DEMO DATA</span>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <section class="section" id="method">
+      <div class="section-heading">
+        <div><h2 data-i18n="sec4_title">How TerraWatch works</h2><p data-i18n="sec4_sub">From satellite radar inputs to map-based screening and location reports</p></div>
+        <span class="eyebrow-small">04 / METHODOLOGY</span>
+      </div>
+      <div class="method-grid">
+        <article class="method-card"><span class="method-icon">1</span><h3>Radar observations</h3><p>The backend ingests paired ascending and descending NISAR GUNW observations when available. It uses unwrapped interferometric phase and coherence/connected-component masks to form displacement estimates. Scene dates and the stored-pass count matter: the current interface may have only a small number of observations.</p></article>
+        <article class="method-card"><span class="method-icon">2</span><h3>Displacement grid</h3><p>The map displays backend raster outputs in centimetres on a nominal 80 m grid. A selected point returns its cell value, a local neighborhood mean, an uncertainty estimate, and a coherence-related status. Negative values are treated as sinking by the backend risk rules.</p></article>
+        <article class="method-card"><span class="method-icon">3</span><h3>Risk screening</h3><p>The backend classifies point displacement using its configured thresholds: high subsidence at or below −0.50 cm, moderate sinking at or below −0.25 cm, and uplift/swelling at or above +0.30 cm. These are prototype screening categories—not building safety ratings.</p></article>
+        <article class="method-card"><span class="method-icon">4</span><h3>Spatial model outputs</h3><p>An Isolation Forest produces a relative anomaly score from location and displacement values. DBSCAN groups adjacent pixels at or below −0.45 cm into spatial clusters. An anomaly score or cluster is a model output, not a probability of failure or a confirmed damage observation.</p></article>
+        <article class="method-card"><span class="method-icon">5</span><h3>Structures and nearby context</h3><p>Mapped structure features are sampled against the displacement raster and ranked by the backend. Point analysis also returns mapped exposed structures within 150 m when available. The list depends on the coverage and quality of those source features.</p></article>
+        <article class="method-card"><span class="method-icon">6</span><h3>Time series and forecast</h3><p>Historical charts show only dates and values returned by the backend; missing observations are not interpolated. The forecast extrapolates from the neighborhood mean and uncertainty. With fewer than five passes, the backend labels long-term confidence as low.</p></article>
+      </div>
+      <div class="method-notes">
+        <article class="method-card">
+          <h3>What the measurements mean</h3>
+          <p>Interferometric SAR (InSAR) compares the phase of radar returns from repeat satellite observations to estimate relative displacement along the radar line of sight. TerraWatch presents the backend’s vertical-displacement product and point-analysis interpretation; results remain sensitive to viewing geometry, surface coherence, atmospheric effects, reference choices, and processing quality. A single cell is not a direct measurement of a particular building’s foundation movement.</p>
+        </article>
+        <article class="method-card">
+          <h3>Use the results responsibly</h3>
+          <ul>
+            <li>Use the map and report to prioritize follow-up—not to diagnose a structure remotely.</li>
+            <li>Check the reported confidence, uncertainty, observation count, and acquisition dates.</li>
+            <li>Annualized rates derived from short intervals are not observed long-term rates.</li>
+            <li>Forecast bands are model estimates, not guarantees or safety thresholds.</li>
+            <li>Confirm concerning results with qualified field inspection and appropriate geotechnical data.</li>
+          </ul>
+        </article>
+      </div>
+      <p class="method-disclaimer">TerraWatch is a research and demonstration interface. Data availability and model limitations apply; outputs are not a substitute for professional engineering assessment or emergency guidance.</p>
+    </section>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-column">
+          <h3>Copyright</h3>
+          <p>© 2026 TerraWatch. All rights reserved.</p>
+          <p>Developed for NASA Space Apps Challenge 2026.</p>
+          <p class="footer-note">Values are backend outputs and depend on available radar and structure datasets. Model outputs are not a substitute for field verification.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html" data-i18n="nav_overview">Overview</a>
+            <a href="map.html" data-i18n="nav_map">Monitoring Map</a>
+            <a href="analysis.html" data-i18n="nav_analysis">Analysis</a>
+            <a href="methodology.html" data-i18n="nav_method">Methodology</a>
+            <a href="about.html" data-i18n="nav_about">About us</a>
+            <a href="assistant.html">AI Assistant</a>
+            <a href="https://www.spaceappschallenge.org/" target="_blank" rel="noopener noreferrer">NASA Space Apps</a>
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+  <script src="assistant.js"></script>
+</body>
+</html>

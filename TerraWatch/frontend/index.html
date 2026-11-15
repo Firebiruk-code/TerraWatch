@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050b14">
+  <meta name="description" content="TerraWatch SAR — an urban land subsidence monitoring interface for Addis Ababa.">
+  <title>Overview | TerraWatch SAR | Urban Subsidence Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="overview">
+  <div class="earth-backdrop" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="metadata" poster="assets/earth-rotation-poster.jpg" tabindex="-1">
+      <source src="assets/earth-rotation.webm" type="video/webm">
+    </video>
+  </div>
+  <header class="topbar">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html" aria-label="TerraWatch SAR home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.5 14.8 10 12 21.5 9.2 10 12 2.5Z" fill="currentColor"/>
+            <path d="M12 2.5 14.8 10H12V2.5Z" fill="#fff" opacity=".7"/>
+            <path d="M4 16.5c2.1-1.6 4.2-1.6 6.3 0s4.2 1.6 6.3 0 2.4-1.5 3.4-1.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span><span class="brand-name">TERRA<span>WATCH</span></span><span class="brand-sub">SAR MONITORING SYSTEM</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a class="nav-link active" href="index.html" data-i18n="nav_overview">Overview</a>
+        <a class="nav-link " href="map.html" data-i18n="nav_map">Monitoring map</a>
+        <a class="nav-link " href="analysis.html" data-i18n="nav_analysis">Analysis</a>
+        <a class="nav-link " href="methodology.html" data-i18n="nav_method">Methodology</a>
+        <a class="nav-link" href="about.html" data-i18n="nav_about">About us</a>
+        <a class="nav-link " href="assistant.html">AI Assistant</a>
+      </nav>
+      <div class="nav-right">
+        <button class="lang-toggle" id="langToggle" type="button">🌐 አማርኛ</button>
+        <span class="demo-pill" data-i18n="demo_pill">DEMO DATA</span>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <div class="hazard-banner visible" id="hazardBanner" role="alert">
+      <div class="hazard-banner-left">
+        <span class="hazard-badge" data-i18n="hazard_badge">SUBSIDENCE CLUSTERS</span>
+        <span class="hazard-text" data-i18n="hazard_msg" id="clusterSummary">Loading backend cluster analysis…</span>
+      </div>
+      <a href="map.html" class="action-btn primary" style="white-space:nowrap">Inspect Zones →</a>
+    </div>
+    <section class="hero" id="overview">
+      <div>
+        <div class="eyebrow" data-i18n="hero_eyebrow">Earth observation · Urban resilience</div>
+        <h1 data-i18n="hero_title">See the ground<br>beneath the city.</h1>
+        <p class="hero-copy" data-i18n="hero_copy">Explore Addis Ababa radar displacement, spatial subsidence clusters, and exposed structures. Click a map location to inspect the backend analysis and available observation history.</p>
+      </div>
+      <div class="hero-meta"><span class="pin">⌖</span> <span data-i18n="hero_city">ADDIS ABABA, ETHIOPIA</span> <span>·</span> <span id="todayLabel">DEMO VIEW</span></div>
+    </section>
+    <section class="section" aria-label="Monitoring overview">
+      <div class="section-heading">
+        <div><h2 data-i18n="sec1_title">Monitoring overview</h2><p data-i18n="sec1_sub">Live indicators returned by the TerraWatch backend</p></div>
+        <span class="eyebrow-small">01 / OVERVIEW</span>
+      </div>
+      <div class="metrics">
+        <article class="metric" style="--accent:var(--cyan);--glow:rgba(62,228,242,.18)">
+          <div class="metric-top"><span class="metric-label" data-i18n="m1_label">Most negative structure displacement</span><span class="metric-icon">↕</span></div>
+          <div class="metric-value" id="overviewMaxDisplacement">—</div>
+          <div class="metric-foot" id="overviewMaxFoot">Loading structure data…</div>
+        </article>
+        <article class="metric" style="--accent:var(--blue);--glow:rgba(88,153,255,.18)">
+          <div class="metric-top"><span class="metric-label" data-i18n="m2_label">At-risk structure features</span><span class="metric-icon">⌖</span></div>
+          <div class="metric-value" id="overviewStructureCount">—</div>
+          <div class="metric-foot" id="overviewStructuresFoot">Loading structure data…</div>
+        </article>
+        <article class="metric" style="--accent:var(--amber);--glow:rgba(247,190,104,.18)">
+          <div class="metric-top"><span class="metric-label" data-i18n="m3_label">Stored observation passes</span><span class="metric-icon">◷</span></div>
+          <div class="metric-value" id="overviewPassCount">—</div>
+          <div class="metric-foot" id="overviewPassFoot">Loading sync status…</div>
+        </article>
+        <article class="metric" style="--accent:var(--red);--glow:rgba(255,110,132,.22)">
+          <div class="metric-top"><span class="metric-label" data-i18n="m4_label">ML subsidence clusters</span><span class="metric-icon">⚠</span></div>
+          <div class="metric-value" id="overviewClusterCount" style="font-size:21px;color:#ff8fa0">—</div>
+          <div class="metric-foot" id="overviewClustersFoot">Loading cluster analysis…</div>
+        </article>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-column">
+          <h3>Copyright</h3>
+          <p>© 2026 TerraWatch. All rights reserved.</p>
+          <p>Developed for NASA Space Apps Challenge 2026.</p>
+          <p class="footer-note">Values are returned by the TerraWatch backend and depend on the available radar and structure datasets. Model outputs are not a substitute for field verification.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <div class="footer-links">
+            <a href="index.html" data-i18n="nav_overview">Overview</a>
+            <a href="map.html" data-i18n="nav_map">Monitoring Map</a>
+            <a href="analysis.html" data-i18n="nav_analysis">Analysis</a>
+            <a href="methodology.html" data-i18n="nav_method">Methodology</a>
+            <a href="about.html" data-i18n="nav_about">About us</a>
+            <a href="assistant.html">AI Assistant</a>
+            <a href="https://www.spaceappschallenge.org/" target="_blank" rel="noopener noreferrer">NASA Space Apps</a>
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+  <script src="assistant.js"></script>
+</body>
+</html>
