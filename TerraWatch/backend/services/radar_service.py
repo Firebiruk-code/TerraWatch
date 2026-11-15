@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image
 import rasterio
 from rasterio.warp import calculate_default_transform, reproject, Resampling, transform as warp_transform
-from backend.config import DETRENDED_TIF, RAW_VERT_TIF, COLOR_LIMIT_CM, RADAR_RESOLUTION_M
+from config import DETRENDED_TIF, RAW_VERT_TIF, COLOR_LIMIT_CM, RADAR_RESOLUTION_M
 
 def _remove_planar_ramp(arr: np.ndarray) -> np.ndarray:
     rows, cols = arr.shape
