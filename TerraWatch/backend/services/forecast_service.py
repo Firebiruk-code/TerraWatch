@@ -1,5 +1,5 @@
 import numpy as np
-from backend.config import HIGH_SINKING_CM, MODERATE_SINKING_CM, UPLIFT_THRESHOLD_CM
+from config import HIGH_SINKING_CM, MODERATE_SINKING_CM, UPLIFT_THRESHOLD_CM
 
 def classify_risk(cell_cm: float) -> str:
     if cell_cm <= HIGH_SINKING_CM:
