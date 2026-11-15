@@ -2,7 +2,7 @@ import json
 import logging
 import urllib.request
 from urllib.error import HTTPError, URLError
-from backend.config import GEMINI_API_KEY, GEMINI_MODEL
+from config import GEMINI_API_KEY, GEMINI_MODEL
 
 logger = logging.getLogger(__name__)
 
