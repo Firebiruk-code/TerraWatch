@@ -10,7 +10,7 @@ from rasterio.features import geometry_mask
 from rasterio.transform import from_origin
 from rasterio.warp import reproject, Resampling
 import xarray as xr
-from backend.config import (
+from config import (
     SYNC_LOG_JSON,
     ADDIS_BBOX_WGS84,
     ADDIS_BBOX_UTM,
