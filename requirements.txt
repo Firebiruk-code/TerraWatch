@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+numpy
+rasterio
+geopandas
+shapely
+pyproj
+pillow
+scikit-learn
+apscheduler
+xarray
+netcdf4
+python-dotenv
+earthaccess
+h5py
+matplotlib
