@@ -1,7 +1,7 @@
 import json
 import geopandas as gpd
 from shapely.geometry import Point
-from backend.config import SUBCITY_RISK_GEOJSON, RISK_STRUCTURES_GEOJSON
+from config import SUBCITY_RISK_GEOJSON, RISK_STRUCTURES_GEOJSON
 
 class StructureService:
     def __init__(self):
