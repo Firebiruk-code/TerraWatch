@@ -1,0 +1,11 @@
+{
+  "ingested_granules": [
+    "NISAR_L2_PR_GUNW_031_165_D_20260929_20261011",
+    "NISAR_L2_PR_GUNW_031_165_A_20260929_20261011"
+  ],
+  "ingested_dates": [
+    "2026-10-11"
+  ],
+  "last_checked": "2026-11-15 09:26 UTC",
+  "streaming_mode": "Cloud HTTP Range Subset (~3 MB / pass)"
+}
