@@ -124,7 +124,7 @@ def sync_now():
 
 
 import xarray as xr
-from backend.config import TIMESERIES_NC
+from config import TIMESERIES_NC
 
 @app.get("/api/timeseries")
 def get_pixel_timeseries(lat: float, lon: float):
