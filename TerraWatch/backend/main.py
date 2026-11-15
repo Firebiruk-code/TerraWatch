@@ -1,14 +1,14 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from backend.schemas import PointAnalysisResponse, ChatRequest, ChatResponse
-from backend.services.radar_service import RadarService
-from backend.services.ml_service import SpatialMLService
-from backend.services.forecast_service import classify_risk, build_forecast
-from backend.services.structure_service import StructureService
-from backend.services.ai_advisor import generate_point_interpretation, answer_user_question
-from backend.workers.nasa_sync import load_sync_log, sync_all_new_nisar
-from backend.workers.scheduler import start_scheduler, stop_scheduler, get_next_run
+from schemas import PointAnalysisResponse, ChatRequest, ChatResponse
+from services.radar_service import RadarService
+from services.ml_service import SpatialMLService
+from services.forecast_service import classify_risk, build_forecast
+from services.structure_service import StructureService
+from services.ai_advisor import generate_point_interpretation, answer_user_question
+from workers.nasa_sync import load_sync_log, sync_all_new_nisar
+from workers.scheduler import start_scheduler, stop_scheduler, get_next_run
 
 radar_svc: RadarService | None = None
 ml_svc: SpatialMLService | None = None
